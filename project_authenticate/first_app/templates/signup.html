@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+{% load crispy_forms_tags %}
+{% block content%}
+{% if messages %}
+{% for m in messages%}
+<h3 class='text-info'>{{m}}</h3>
+{% endfor %}
+{% endif %}
+    <form style='width:50%;margin:auto' method='post' novalidate>
+      
+      
+      <!--{{form | crispy}} -->
+      {% csrf_token %}
+      <h1 class='mt-5 mb-2'>Hello, User!</h1>
+      <h3>Signup!</h3>
+      {% for fm in form %}
+      {{fm.label_tag}}
+      {{fm}}
+      {{fm.errors | striptags }}
+      {% endfor %}
+      <button  class='btn btn-primary m-2' type='submit'>Submit</button>
+    </form>
+{% endblock %}
